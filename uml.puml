@@ -1,0 +1,57 @@
+@startuml
+enum org.mazemzemi.rover.domain.Direction {
++  NORTH
++  EAST
++  SOUTH
++  WEST
+- String value
++ Direction turnLeft()
++ Direction turnRight()
+}
+
+
+class org.mazemzemi.rover.domain.Obstacle {
+- Position position
++ boolean isAt(Position)
++ Position getPosition()
+}
+
+
+class org.mazemzemi.rover.domain.Rover {
+- Position position
+- Direction direction
+- List<Obstacle> obstacles
++ void processCommands(char[])
+- void move(boolean)
++ Position getPosition()
++ Direction getDirection()
+}
+
+
+class org.mazemzemi.rover.Main {
++ {static} void main(String[])
+}
+
+class org.mazemzemi.rover.domain.Position {
+- int x
+- int y
+- {static} int GRID_SIZE
++ Position move(Direction,boolean)
++ int getX()
++ int getY()
++ boolean equals(Object)
++ int hashCode()
+}
+
+
+class org.mazemzemi.rover.controller.RoverController {
++ Rover initializeRover(int,int,Direction,List<Obstacle>)
++ void executeCommands(Rover,String)
+}
+
+class org.mazemzemi.rover.exception.ObstacleEncounteredException {
+}
+
+
+org.mazemzemi.rover.exception.RuntimeException <|-- org.mazemzemi.rover.exception.ObstacleEncounteredException
+@enduml
